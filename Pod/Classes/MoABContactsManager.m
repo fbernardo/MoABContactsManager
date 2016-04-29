@@ -51,7 +51,6 @@
         
         _fieldsMask = MoContactFieldDefaults;
         _sortDescriptors = @[];
-        [self observeAddressBook];
     }
     
     return self;
@@ -484,24 +483,5 @@
     
     [contact setFullName:fullName];
 }
-
-#pragma mark - Address Book Observer
-
-- (void)observeAddressBook
-{
-    ABAddressBookRegisterExternalChangeCallback(_addressBook, addressBookExternalChange, (__bridge void *)(self));
-}
-
-#pragma mark - Address Book did change callback
-
-void addressBookExternalChange(ABAddressBookRef __unused addressBookRef, CFDictionaryRef __unused info, void *context)
-{
-    MoABContactsManager *manager = (__bridge MoABContactsManager *)(context);
-    if([manager.delegate respondsToSelector:@selector(addressBookDidChange)])
-    {
-        [manager.delegate addressBookDidChange];
-    }
-}
-
 
 @end

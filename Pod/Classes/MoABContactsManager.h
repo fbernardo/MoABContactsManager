@@ -45,10 +45,6 @@ typedef NS_OPTIONS(NSUInteger, MoContactField)
 
 - (BOOL)moABContatsManager:(MoABContactsManager *)contactsManager shouldIncludeContact:(MoContact *)contact;
 
-@optional
-
-- (void)addressBookDidChange;
-
 @end
 
 
